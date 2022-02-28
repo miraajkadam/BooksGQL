@@ -1,0 +1,25 @@
+{
+  "name": "booksgql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miraajkadam/BooksGQL.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/miraajkadam/BooksGQL/issues"
+  },
+  "homepage": "https://github.com/miraajkadam/BooksGQL#readme",
+  "scripts": {
+    "setup-server": "cd server && npm ci",
+    "build-server": "cd server && npm run build",
+    "serve-server": "cd server && npm run dev",
+    "setup-client": "cd client && npm ci",
+    "build-client": "cd client && npm run build",
+    "serve-client": "cd client && npm run dev"
+  }
+}
