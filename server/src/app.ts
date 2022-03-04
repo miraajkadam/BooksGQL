@@ -1,7 +1,7 @@
 import express, { Application } from 'express';
 import { graphqlHTTP } from 'express-graphql';
-import Schema from './schema/schema';
 import mongoose from 'mongoose';
+import Schema from './schema/schema';
 
 const app: Application = express();
 
