@@ -20,6 +20,6 @@
     "serve-server": "cd server && npm run dev",
     "setup-client": "cd client && npm ci",
     "build-client": "cd client && npm run build",
-    "serve-client": "cd client && npm run dev"
+    "serve-client": "cd client && npm start"
   }
 }
