@@ -1,23 +1,28 @@
-import { FC, FormEventHandler, PropsWithChildren } from "react";
-import { DataProps, graphql } from "react-apollo";
+import { useMutation, useQuery } from "@apollo/client";
+import { FormEventHandler } from "react";
 import { AuthorType } from "../index.d";
-import { getAuthorsQuery } from "../queries/queries";
+import { addBookMutation, getAuthorsQuery } from "../queries/queries";
 
-interface Props extends PropsWithChildren<Partial<DataProps<{}, {}>>> {}
+const AddBook = () => {
+  const { loading, error, data } = useQuery(getAuthorsQuery);
+  const [addBook] = useMutation(addBookMutation);
 
-const AddBook: FC<Props> = (props) => {
   const fetchAuthors = () => {
-    if ((props as any).data.loading) return <option disabled>Loading Authors...!</option>;
-    else {
-      return (props.data as any).authors.map((author: AuthorType) => (
+    if (error) return <h3>Something went wrong..!</h3>;
+
+    if (!loading) {
+      const { authors } = data;
+      return authors.map((author: AuthorType) => (
         <option key={author.id} value={author.id}>
           {author.name}
         </option>
       ));
     }
+
+    return <>Loading...!</>;
   };
 
-  const handleFormSubmit: FormEventHandler<HTMLFormElement> = (event: any) => {
+  const handleFormSubmit: FormEventHandler<HTMLFormElement> = async (event: any) => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
@@ -26,7 +31,9 @@ const AddBook: FC<Props> = (props) => {
     for (let [key, value] of formData.entries()) {
       data = { ...data, [key]: value };
     }
-    console.log(data);
+
+    const response = await addBook();
+    console.log(response);
   };
 
   return (
@@ -53,4 +60,4 @@ const AddBook: FC<Props> = (props) => {
   );
 };
 
-export default graphql(getAuthorsQuery)(AddBook);
+export default AddBook;

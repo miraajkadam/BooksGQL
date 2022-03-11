@@ -1,15 +1,11 @@
-import ApolloClient from "apollo-boost";
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { FC, Fragment } from "react";
-import { ApolloProvider } from "react-apollo";
 import AddBook from "./components/AddBook";
 import BookList from "./components/BookList";
 
 const client = new ApolloClient({
   uri: "http://localhost:5000/graphql",
-  onError: ({ networkError, graphQLErrors }) => {
-    console.log("graphQLErrors", graphQLErrors);
-    console.log("networkError", networkError);
-  },
+  cache: new InMemoryCache(),
 });
 
 const App: FC = () => {
