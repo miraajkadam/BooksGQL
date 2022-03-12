@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { FormEventHandler } from "react";
-import { AuthorType, BookType } from "../index.d";
+import { AuthorType } from "../index.d";
 import { addBookMutation, getAuthorsQuery } from "../queries/queries";
 
 const AddBook = () => {
