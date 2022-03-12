@@ -19,8 +19,8 @@ const BookTypeGQL: GraphQLObjectType<any, any> = new GraphQLObjectType({
     genre: { type: GraphQLString },
     author: {
       type: AuthorTypeGQL,
-      resolve(parent: Pick<BookType, "id">, args) {
-        const author = Author.findById(parent.id);
+      resolve(parent: Pick<BookType, "authorId">, args) {
+        const author = Author.findById(parent.authorId);
         return author;
       },
     },
@@ -100,7 +100,6 @@ const Mutation = new GraphQLObjectType({
       resolve(parent, args: Pick<BookType, "name" | "genre" | "authorId">) {
         const book = new Book({ name: args.name, genre: args.genre, authorId: args.authorId });
         const response = book.save();
-        console.log("jnwdakndkjn");
         return response;
       },
     },
