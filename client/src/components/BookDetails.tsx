@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { FC, useState } from "react";
+import { FC } from "react";
 import { BookType } from "../index.d";
 import { getBookQuery } from "../queries/queries";
 
@@ -8,8 +8,6 @@ type Props = {
 };
 
 const BookDetails: FC<Props> = (props) => {
-  const [bookDetails, setBookDetails] = useState<BookType | undefined>();
-
   const { id } = props;
   const { loading, error, data } = useQuery(getBookQuery, { variables: { id } });
 

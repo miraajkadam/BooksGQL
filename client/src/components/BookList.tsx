@@ -30,7 +30,13 @@ const BookList: FC = () => {
   return (
     <Fragment>
       <ul id="book-list">{displayBooks()}</ul>
-      {selectedBookId && <BookDetails id={selectedBookId} />}
+      {selectedBookId ? (
+        <BookDetails id={selectedBookId} />
+      ) : (
+        <div id="book-details">
+          <h1>No book selected</h1>
+        </div>
+      )}
     </Fragment>
   );
 };

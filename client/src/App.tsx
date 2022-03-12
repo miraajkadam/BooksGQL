@@ -1,6 +1,6 @@
 import { ApolloClient, ApolloProvider, from, HttpLink, InMemoryCache } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import AddBook from "./components/AddBook";
 import BookList from "./components/BookList";
 
@@ -25,11 +25,11 @@ const client = new ApolloClient({
 const App: FC = () => {
   return (
     <ApolloProvider client={client}>
-      <Fragment>
+      <div id="main">
         <h1>Miraaj's reading list</h1>
         <BookList />
         <AddBook />
-      </Fragment>
+      </div>
     </ApolloProvider>
   );
 };
