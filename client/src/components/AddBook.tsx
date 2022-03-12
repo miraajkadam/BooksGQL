@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { FormEventHandler } from "react";
-import { AuthorType } from "../index.d";
+import { AuthorType, BookType } from "../index.d";
 import { addBookMutation, getAuthorsQuery } from "../queries/queries";
 
 const AddBook = () => {
@@ -32,7 +32,7 @@ const AddBook = () => {
       data = { ...data, [key]: value };
     }
 
-    const response = await addBook();
+    const response = await addBook({ variables: data });
     console.log(response);
   };
 
