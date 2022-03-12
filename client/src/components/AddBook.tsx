@@ -1,7 +1,7 @@
 import { useMutation, useQuery } from "@apollo/client";
 import { FormEventHandler } from "react";
-import { AuthorType } from "../index.d";
-import { addBookMutation, getAuthorsQuery } from "../queries/queries";
+import { AuthorType, BookType } from "../index.d";
+import { addBookMutation, getAuthorsQuery, getBooksQuery } from "../queries/queries";
 
 const AddBook = () => {
   const { loading, error, data } = useQuery(getAuthorsQuery);
@@ -26,13 +26,13 @@ const AddBook = () => {
     event.preventDefault();
     const formData = new FormData(event.target);
 
-    let data = {};
+    let bookData = {} as BookType;
 
     for (let [key, value] of formData.entries()) {
-      data = { ...data, [key]: value };
+      bookData = { ...bookData, [key]: value };
     }
 
-    const response = await addBook({ variables: data });
+    const response = await addBook({ variables: bookData, refetchQueries: [{ query: getBooksQuery }] });
     console.log(response);
   };
 
